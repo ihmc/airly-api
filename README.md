@@ -1,2 +1,4 @@
-# airly-api
-Airly Unofficial Java API wrapper
+# Airly API
+[Airly](https://airly.eu/en/) Unofficial Java API wrapper
+
+[API Documentation](https://developer.airly.eu/docs)

@@ -1,11 +1,11 @@
 package us.ihmc.airly.api;
 
+import io.reactivex.Flowable;
 import okhttp3.OkHttpClient;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 import us.ihmc.airly.api.models.Area;
 import us.ihmc.airly.api.models.SensorInfoWithPollutionLevel;
 
@@ -27,7 +27,7 @@ public class AirlyRxService {
     public AirlyRxService(String apiKey, OkHttpClient client) {
         Retrofit.Builder builder = new Retrofit.Builder().baseUrl(AirlyAPI.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         if (client != null) {
             builder = builder.client(client);
@@ -45,11 +45,11 @@ public class AirlyRxService {
         ).enqueue(cback);
     }
 
-    public Observable<SensorInfoWithPollutionLevel> observableCurrentMeasurements(Area area) {
-        return observableCurrentMeasurementsList(area).single().flatMap(Observable::from);
+    public Flowable<SensorInfoWithPollutionLevel> observableCurrentMeasurements(Area area) {
+        return observableCurrentMeasurementsList(area).flatMap(Flowable::fromIterable);
     }
 
-    private Observable<List<SensorInfoWithPollutionLevel>> observableCurrentMeasurementsList(Area area) {
+    private Flowable<List<SensorInfoWithPollutionLevel>> observableCurrentMeasurementsList(Area area) {
         return airlyApi.observableSensorsInArea(
                 area.getSw().getLatitude(), area.getSw().getLongitude(),
                 area.getNe().getLatitude(), area.getNe().getLongitude(),

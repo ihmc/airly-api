@@ -1,9 +1,9 @@
 package us.ihmc.airly.api;
 
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 import us.ihmc.airly.api.models.SensorInfoWithPollutionLevel;
 
 import java.util.List;
@@ -17,10 +17,10 @@ public interface AirlyAPI {
     String BASE_URL = "https://airapi.airly.eu/";
 
     @GET("v1/sensor/measurements")
-    Observable<SensorInfoWithPollutionLevel> observableSensor(@Query("sensorId") String sensorId);
+    Flowable<SensorInfoWithPollutionLevel> observableSensor(@Query("sensorId") String sensorId);
 
     @GET("v1/sensors/current")
-    Observable<List<SensorInfoWithPollutionLevel>> observableSensorsInArea(
+    Flowable<List<SensorInfoWithPollutionLevel>> observableSensorsInArea(
             @Query("southwestLat") float southwestLat, @Query("southwestLong") float southwestLong,
             @Query("northeastLat") float northeastLat, @Query("northeastLong") float northeastLong,
             @Query("apikey") String apikey);

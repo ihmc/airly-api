@@ -1,5 +1,4 @@
-group 'eu.airly'
-version '0.1'
+group 'us.ihmc.airly'
 
 buildscript {
     ext.kotlin_version = '1.2.40'
@@ -29,8 +28,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.10.0'
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.4.0'
-    compile group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: '2.4.0'
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.4.0'
+    compile group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.4.0'
+    //compile group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: '2.4.0'
+
     compile group: 'com.xenomachina', name: 'kotlin-argparser', version: '2.0.7'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'

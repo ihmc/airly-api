@@ -1,7 +1,7 @@
 group 'us.ihmc.airly'
 
 buildscript {
-    ext.kotlin_version = '1.2.40'
+    ext.kotlin_version = '1.3.0'
 
     repositories {
         jcenter()

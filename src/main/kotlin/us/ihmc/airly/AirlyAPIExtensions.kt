@@ -18,7 +18,7 @@ fun AirlyAPI.getInstallationsInArea(area: Area): Flowable<List<Installation>> {
             .toList().toFlowable()
 }
 
-fun AirlyAPI.getMeasurementsInArea(area: Area) = getInstallationsInArea(area)
+fun AirlyAPI.getMeasurementsInArea(area: Area): Flowable<MutableList<LocatedMeasurement>> = getInstallationsInArea(area)
         .flatMap { Flowable.fromIterable(it) }
         .concatMap { installation -> getMeasurements(installation.id)
                 .map { LocatedMeasurement(it, installation) } }

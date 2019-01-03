@@ -3,7 +3,7 @@ package us.ihmc.airly.app
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.mainBody
 import io.reactivex.Flowable
-import us.ihmc.airly.AirlyServiceBuilder
+import us.ihmc.airly.AirlyClientBuilder
 import us.ihmc.airly.api.models.Area
 import us.ihmc.airly.api.models.Location
 import us.ihmc.airly.getMeasurementsInArea
@@ -18,7 +18,7 @@ fun main(args: Array<String>) = mainBody {
 
     ArgParser(args).parseInto(::Config).run {
 
-        var airly = AirlyServiceBuilder(apiKey)
+        var airly = AirlyClientBuilder(apiKey)
         if (debug || verbose) airly = airly.setLogger()
         airly.setRequestLimit().build().getMeasurementsInArea(Area(sw, ne))
                 .flatMap { Flowable.fromIterable(it) }

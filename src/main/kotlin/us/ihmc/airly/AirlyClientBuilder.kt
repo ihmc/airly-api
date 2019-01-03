@@ -8,21 +8,21 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class AirlyServiceBuilder(apiKey: String) {
+class AirlyClientBuilder(apiKey: String) {
     private var httpClientBuilder = OkHttpClient.Builder()
             .setKey(apiKey)
 
-    fun setLogger(logger: Logger = LoggerFactory.getLogger(AirlyAPI::class.java)): AirlyServiceBuilder {
+    fun setLogger(logger: Logger = LoggerFactory.getLogger(AirlyAPI::class.java)): AirlyClientBuilder {
         httpClientBuilder = httpClientBuilder.setLogLevel(logger)
         return this
     }
 
-    fun setRequestLimit(permits: Int = 50, timePeriod: TimeUnit = TimeUnit.MINUTES): AirlyServiceBuilder {
+    fun setRequestLimit(permits: Int = 50, timePeriod: TimeUnit = TimeUnit.MINUTES): AirlyClientBuilder {
         httpClientBuilder = httpClientBuilder.limitRequests(permits, timePeriod)
         return this
     }
 
-    fun build() = Retrofit.Builder()
+    fun build(): AirlyAPI = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(AirlyAPI.BASE_URL)

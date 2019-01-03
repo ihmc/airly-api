@@ -33,6 +33,12 @@ dependencies {
 
     compile group: 'com.xenomachina', name: 'kotlin-argparser', version: '2.0.7'
 
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile 'com.github.devcsrj:slf4j-okhttp3-logging-interceptor:1.0.1'
+
+    // Only if you want to run the app
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

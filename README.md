@@ -6,6 +6,15 @@
 
 Airly API is compatible with Airly's API v2.
 
+### Donwload
+
+With Gradle:
+```
+dependencies {
+    compile 'com.github.ihmc:airly-api:v0.4-alpha'
+}
+```
+
 ### Client
 You can create an Airly client using the `AirlyClientBuilder`:
 ```

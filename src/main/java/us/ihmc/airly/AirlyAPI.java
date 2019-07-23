@@ -4,8 +4,6 @@ import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import us.ihmc.airly.api.models.Installation;
-import us.ihmc.airly.api.models.Measurement;
 
 import java.util.List;
 

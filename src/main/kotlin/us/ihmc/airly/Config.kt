@@ -1,4 +1,4 @@
-package us.ihmc.airly.app
+package us.ihmc.airly
 
 import com.xenomachina.argparser.ArgParser
 

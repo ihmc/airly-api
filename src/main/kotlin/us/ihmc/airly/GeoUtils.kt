@@ -1,8 +1,5 @@
 package us.ihmc.airly
 
-import us.ihmc.airly.api.models.Area
-import us.ihmc.airly.api.models.Location
-
 fun Area.contains(location: Location) = contains(location.latitude, sw.latitude, ne.latitude) &&
         contains(location.longitude, sw.longitude, ne.longitude)
 

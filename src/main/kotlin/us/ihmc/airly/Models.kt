@@ -18,7 +18,7 @@ data class Installation(var id: Int, var location: Location, var address: Addres
 
 data class Value(var name: String, var value: Double)
 
-data class SingleMeasurement(var fromDateTime: String, var tilDateTime: String, var values: List<Value>, var indexes: List<Index>, var standards: List<Standard>)
+data class SingleMeasurement(var fromDateTime: String, var tillDateTime: String, var values: List<Value>, var indexes: List<Index>, var standards: List<Standard>)
 
 data class Index(var name: String, var value: Double, var level: String,
                  var description: String, var advice: String, var color: String)

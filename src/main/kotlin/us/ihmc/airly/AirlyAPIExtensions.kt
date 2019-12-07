@@ -2,9 +2,6 @@ package us.ihmc.airly
 
 import io.reactivex.Flowable
 import us.ihmc.airly.AirlyAPI.UNLIMITED_RESULTS
-import us.ihmc.airly.api.models.Area
-import us.ihmc.airly.api.models.Installation
-import us.ihmc.airly.api.models.LocatedMeasurement
 
 fun AirlyAPI.getNearestInstallation(latitude: Double, longitude: Double, maxDistanceKm: Double, maxResults: Int): Flowable<Installation> {
 

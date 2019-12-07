@@ -1,19 +1,16 @@
-package us.ihmc.airly.app
+package us.ihmc.airly
 
+import com.google.gson.GsonBuilder
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.mainBody
-import us.ihmc.airly.AirlyClientBuilder
-import us.ihmc.airly.api.models.Area
-import us.ihmc.airly.api.models.Location
-import us.ihmc.airly.getMeasurementInArea
 
 /**
  * Created by gbenincasa on 5/15/18.
  */
 
 fun main(args: Array<String>) = mainBody {
-    val sw = Location(52.0707, 21.3606)
-    val ne = Location(52.3957, 20.6885)
+    val sw = Location(50.200035, 19.264862)
+    val ne = Location(50.208027, 19.285269)
 
     ArgParser(args).parseInto(::Config).run {
 
@@ -22,7 +19,7 @@ fun main(args: Array<String>) = mainBody {
         airly.setRequestLimit().build().getMeasurementInArea(Area(sw, ne))
                 .doOnSubscribe { print("Started") }
                 .doOnTerminate { print("Terminated") }
-                .subscribe({ println(it) }, { println(it.message) })
+                .subscribe({ println(GsonBuilder().setPrettyPrinting().create().toJson(it)) }, { println(it.message) })
                 .dispose()
     }
 }
